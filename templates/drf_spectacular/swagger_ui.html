@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title|default:"Plataforma EdTech - Documentación API" }}</title>
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/swagger-ui-dist@5.11.0/swagger-ui.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4f46e5;
+            --primary-hover: #4338ca;
+            --bg-header: #1e1b4b;
+            --text-main: #1f2937;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
+            color: var(--text-main);
+            background-color: #f8fafc;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Barra superior elegante */
+        .topbar {
+            background-color: var(--bg-header) !important;
+            padding: 15px 30px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .topbar .download-url-wrapper {
+            display: none !important;
+        }
+
+        .custom-brand {
+            color: white;
+            font-weight: 700;
+            font-size: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .student-badge {
+            background-color: rgba(255, 255, 255, 0.15);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #e2e8f0;
+            font-weight: 400;
+        }
+
+        /* Estilos generales de Swagger refinados */
+        .swagger-ui .info {
+            margin: 30px 0;
+        }
+
+        .swagger-ui .info .title {
+            color: var(--bg-header);
+            font-weight: 700;
+        }
+
+        .swagger-ui .btn.authorize {
+            background-color: var(--primary-color) !important;
+            border-color: var(--primary-color) !important;
+            color: white !important;
+            border-radius: 8px;
+            font-weight: 600;
+            box-shadow: 0 2px 4px rgba(79, 70, 229, 0.3);
+        }
+
+        .swagger-ui .btn.authorize svg {
+            fill: white !important;
+        }
+
+        .swagger-ui .opblock.opblock-get {
+            background: rgba(16, 185, 129, 0.05);
+            border-color: #10b981;
+        }
+
+        .swagger-ui .opblock.opblock-post {
+            background: rgba(59, 130, 246, 0.05);
+            border-color: #3b82f6;
+        }
+
+        .swagger-ui .opblock.opblock-put {
+            background: rgba(245, 158, 11, 0.05);
+            border-color: #f59e0b;
+        }
+
+        .swagger-ui .opblock.opblock-delete {
+            background: rgba(239, 68, 68, 0.05);
+            border-color: #ef4444;
+        }
+
+        .swagger-ui .opblock {
+            border-radius: 10px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            margin-bottom: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="topbar">
+        <div class="custom-brand">
+            🎓 Plataforma EdTech (Evaluación Backend)
+        </div>
+        <div class="student-badge">
+            Desarrollado por: <strong>Natalia</strong> | Año: 2026
+        </div>
+    </div>
+
+    <div id="swagger-ui"></div>
+
+    <script src="https://unpkg.com/swagger-ui-dist@5.11.0/swagger-ui-bundle.js"></script>
+    <script>
+        window.onload = function () {
+            const ui = SwaggerUIBundle({
+                url: "{{ schema_url }}",
+                dom_id: '#swagger-ui',
+                presets: [
+                    SwaggerUIBundle.presets.apis,
+                    SwaggerUIBundle.SwaggerUIStandalonePreset
+                ],
+                layout: "BaseLayout",
+                deepLinking: true,
+                showExtensions: true,
+                showCommonExtensions: true
+            });
+            window.ui = ui;
+        };
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+
+{% block title %}Registrar Nuevo Bootcamp | Panel Coordinador{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-8 col-xl-7">
+
+            <!-- Encabezado de la página -->
+            <div class="d-flex align-items-center justify-content-between mb-4 pb-2 border-bottom">
+                <div>
+                    <span class="badge bg-warning text-dark fw-bold text-uppercase px-3 py-1 mb-2">
+                        <i class="bi bi-shield-lock-fill me-1"></i> Panel Coordinador
+                    </span>
+                    <h1 class="h3 fw-bold text-dark mb-1">Registrar Nuevo Bootcamp</h1>
+                    <p class="text-muted small mb-0">Completa los datos del programa para publicarlo en el catálogo.</p>
+                </div>
+                <a href="{% url 'catalogo' %}" class="btn btn-outline-secondary btn-sm fw-medium">
+                    <i class="bi bi-arrow-left me-1"></i> Volver al Catálogo
+                </a>
+            </div>
+
+            <!-- Tarjeta del Formulario -->
+            <div class="card shadow-sm border-0 rounded-4 overflow-hidden">
+                <div class="card-body p-4 p-md-5">
+
+                    {% if form.non_field_errors %}
+                    <div class="alert alert-danger alert-dismissible fade show border-0 shadow-sm mb-4" role="alert">
+                        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                        <strong>Por favor corrige los siguientes errores:</strong>
+                        <ul class="mb-0 mt-2 small">
+                            {% for error in form.non_field_errors %}
+                            <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+                    </div>
+                    {% endif %}
+
+                    <form method="post" action="{% url 'crear_curso' %}" novalidate>
+                        {% csrf_token %}
+
+                        <!-- Título del Curso -->
+                        <div class="mb-3">
+                            <label for="{{ form.titulo.id_for_label }}"
+                                class="form-label fw-semibold small text-secondary">
+                                <i class="bi bi-mortarboard-fill text-primary me-1"></i>Título del Bootcamp *
+                            </label>
+                            {{ form.titulo }}
+                            {% if form.titulo.errors %}
+                            <div class="text-danger small mt-1">{{ form.titulo.errors|striptags }}</div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Área de Conocimiento -->
+                        <div class="mb-3">
+                            <label for="{{ form.area.id_for_label }}"
+                                class="form-label fw-semibold small text-secondary">
+                                <i class="bi bi-tag-fill text-primary me-1"></i>Área Temática *
+                            </label>
+                            {{ form.area }}
+                            {% if form.area.errors %}
+                            <div class="text-danger small mt-1">{{ form.area.errors|striptags }}</div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Descripción -->
+                        <div class="mb-3">
+                            <label for="{{ form.descripcion.id_for_label }}"
+                                class="form-label fw-semibold small text-secondary">
+                                <i class="bi bi-card-text text-primary me-1"></i>Descripción del Programa *
+                            </label>
+                            {{ form.descripcion }}
+                            {% if form.descripcion.errors %}
+                            <div class="text-danger small mt-1">{{ form.descripcion.errors|striptags }}</div>
+                            {% endif %}
+                        </div>
+
+                        <div class="row g-3 mb-3">
+                            <!-- Costo Matrícula -->
+                            <div class="col-md-6">
+                                <label for="{{ form.costo_matricula.id_for_label }}"
+                                    class="form-label fw-semibold small text-secondary">
+                                    <i class="bi bi-cash-stack text-success me-1"></i>Valor Matrícula ($CLP) *
+                                </label>
+                                {{ form.costo_matricula }}
+                                {% if form.costo_matricula.errors %}
+                                <div class="text-danger small mt-1">{{ form.costo_matricula.errors|striptags }}</div>
+                                {% endif %}
+                            </div>
+
+                            <!-- Cupos Disponibles -->
+                            <div class="col-md-6">
+                                <label for="{{ form.cupos_disponibles.id_for_label }}"
+                                    class="form-label fw-semibold small text-secondary">
+                                    <i class="bi bi-people-fill text-info me-1"></i>Cupos Disponibles *
+                                </label>
+                                {{ form.cupos_disponibles }}
+                                {% if form.cupos_disponibles.errors %}
+                                <div class="text-danger small mt-1">{{ form.cupos_disponibles.errors|striptags }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="row g-3 mb-4">
+                            <!-- Fecha Inicio -->
+                            <div class="col-md-6">
+                                <label for="{{ form.fecha_inicio.id_for_label }}"
+                                    class="form-label fw-semibold small text-secondary">
+                                    <i class="bi bi-calendar-event text-primary me-1"></i>Fecha de Inicio *
+                                </label>
+                                {{ form.fecha_inicio }}
+                                {% if form.fecha_inicio.errors %}
+                                <div class="text-danger small mt-1">{{ form.fecha_inicio.errors|striptags }}</div>
+                                {% endif %}
+                            </div>
+
+                            <!-- Fecha Término -->
+                            <div class="col-md-6">
+                                <label for="{{ form.fecha_termino.id_for_label }}"
+                                    class="form-label fw-semibold small text-secondary">
+                                    <i class="bi bi-calendar-check text-secondary me-1"></i>Fecha de Término *
+                                </label>
+                                {{ form.fecha_termino }}
+                                {% if form.fecha_termino.errors %}
+                                <div class="text-danger small mt-1">{{ form.fecha_termino.errors|striptags }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <!-- Botones de Acción -->
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end pt-3 border-top">
+                            <a href="{% url 'catalogo' %}" class="btn btn-outline-secondary px-4">
+                                Cancelar
+                            </a>
+                            <button type="submit" class="btn btn-warning text-dark fw-bold px-4 shadow-sm">
+                                <i class="bi bi-check-circle-fill me-1"></i> Guardar y Publicar Bootcamp
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

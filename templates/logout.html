@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Sesión Cerrada | EdTech Bootcamps{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5">
+            
+            <div class="card shadow-sm border-0 rounded-4 text-center p-4 p-md-5 bg-white">
+                <div class="mb-4">
+                    <div class="d-inline-flex align-items-center justify-content-center bg-success-subtle text-success rounded-circle" style="width: 80px; height: 80px;">
+                        <i class="bi bi-check-circle-fill display-5"></i>
+                    </div>
+                </div>
+
+                <h1 class="h3 fw-bold text-dark mb-2">Has cerrado sesión correctamente</h1>
+                <p class="text-secondary mb-4">
+                    Tu sesión en la plataforma ha finalizado de forma segura. Esperamos verte pronto de regreso.
+                </p>
+
+                <div class="d-grid gap-2">
+                    <a href="{% url 'catalogo' %}" class="btn btn-primary fw-bold py-2 shadow-sm">
+                        <i class="bi bi-house-door-fill me-1"></i> Volver al Inicio
+                    </a>
+                    <a href="{% url 'login' %}" class="btn btn-outline-secondary fw-medium py-2">
+                        <i class="bi bi-box-arrow-in-right me-1"></i> Iniciar Sesión Nuevamente
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

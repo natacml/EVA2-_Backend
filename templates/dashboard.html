@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <h2 class="fw-bold">Dashboard de Coordinación Académica</h2>
+        <p class="text-muted">Resumen de ventas y estado de los bootcamps.</p>
+    </div>
+</div>
+
+<!-- Alertas de Stock Crítico -->
+<div class="row mb-4">
+    <div class="col-md-6">
+        <div class="card border-danger shadow-sm">
+            <div class="card-header bg-danger text-white fw-bold">
+                ⚠️ Alertas de Stock Crítico (Menos de 5 cupos)
+            </div>
+            <ul class="list-group list-group-flush">
+                {% for curso in cursos_criticos %}
+                <li class="list-group-item d-flex justify-content-between align-items-center text-danger fw-bold">
+                    {{ curso.titulo }}
+                    <span class="badge bg-danger rounded-pill">Solo {{ curso.cupos_disponibles }} cupos</span>
+                </li>
+                {% empty %}
+                <li class="list-group-item text-success fw-bold">
+                    ✅ Todos los cursos tienen cupos suficientes.
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <!-- Resumen de Ventas (Extra para dar más valor) -->
+    <div class="col-md-6">
+        <div class="card border-primary shadow-sm">
+            <div class="card-header bg-primary text-white fw-bold">
+                📊 Resumen Rápido
+            </div>
+            <div class="card-body">
+                <p class="card-text"><strong>Total Cursos Activos:</strong> {{ total_cursos }}</p>
+                <p class="card-text"><strong>Matrículas Pendientes:</strong> {{ matriculas_pendientes }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
